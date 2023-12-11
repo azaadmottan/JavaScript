@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+        input,#btn, #operator {
+            padding: 10px;
+            border-radius: 8px;
+            font-size: large;
+        }
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #result, #btn {
+            display: flex;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="FIRST">Calculator</h1>
+    <div class="container">
+        <div>
+            <input type="number" id="val1">
+
+            <select name="operator" id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">X</option>
+                <option value="/">/</option>
+            </select>
+
+            <input type="number" id="val2">
+            
+            <br>
+            <button id="btn" onclick="calculate()">Calculate</button>
+
+            <br>
+            <input type="number" id="result" readonly>
+        </div>
+    </div>
+</body>
+
+<script>
+    // let x = document.getElementById("FIRST").innerHTML
+    // console.log(x)
+    function calculate()
+    {
+        let val1 = document.getElementById("val1").value
+        let val2 = document.getElementById("val2").value
+        let operator = document.getElementById("operator").value
+
+        let res = 0
+        if (operator == '+')
+        {
+            res = parseInt(val1) + parseInt(val2)
+        }
+        if (operator == '-')
+        {
+            res = parseInt(val1) - parseInt(val2)
+        }
+        if (operator == '*')
+        {
+            res = parseInt(val1) * parseInt(val2)
+        }
+        if (operator == '/')
+        {
+            res = parseInt(val1) / parseInt(val2)
+        }
+        
+        document.getElementById("result").value = res
+    }
+
+
+</script>
+</html>

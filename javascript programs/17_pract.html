@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegExp(Regular Expression)</title>
+
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        .box {
+            padding: 50px;
+            width: 30%;
+            height: 50%;
+            border: 2px solid black;
+        }
+        .pass {
+            display: flex;
+        }
+        input {
+            padding: 8px;
+            font-size: 30px;
+            width: 100%;
+        }
+        .pass_check {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p class="pass">
+            <input type="text" id="password" onkeyup="checkPass(this.value)">
+            <p id="error"></p>
+        </p>
+        <p>
+            <p class="pass_check">8 character</p>
+            <p class="pass_check">1 lower case character</p>
+            <p class="pass_check">1 upper case character</p>
+            <p class="pass_check">1 numerical character</p>
+            <p class="pass_check">1 special character</p>
+        </p>
+    </div>
+</body>
+
+<script>
+    function checkPass(obj)
+    {
+        let char_class = document.getElementsByClassName("pass_check");
+
+        const lower = new RegExp("(?=.*[a-z])");
+        const upper = new RegExp("(?=.*[A-Z])");
+        const number = new RegExp("(?=.*[0-9])");
+        const special = new RegExp("(?=.*[~\!\@\#\$\%\^\&\*\-\+\₹\=(/)])");
+        const eight = new RegExp("(?=.{8,})");
+
+        if (eight.test(obj))
+        {
+            char_class[0].style.color = "blue";
+            char_class[0].style.fontWeight = "bold";
+        }
+        else 
+        {
+            char_class[0].style.color = "grey";
+        }
+
+        if (lower.test(obj))
+        {
+            char_class[1].style.color = "blue";
+            char_class[1].style.fontWeight = "bold";
+        }
+        else 
+        {
+            char_class[1].style.color = "grey";
+        }
+
+        if (upper.test(obj))
+        {
+            char_class[2].style.color = "blue";
+            char_class[2].style.fontWeight = "bold";
+        }
+        else 
+        {
+            char_class[2].style.color = "grey";
+        }
+
+        if (number.test(obj))
+        {
+            char_class[3].style.color = "blue";
+            char_class[3].style.fontWeight = "bold";
+        }
+        else 
+        {
+            char_class[3].style.color = "grey";
+        }
+
+        if (special.test(obj))
+        {
+            char_class[4].style.color = "blue";
+            char_class[4].style.fontWeight = "bold";
+        }
+        else 
+        {
+            char_class[4].style.color = "grey";
+        }
+    }
+</script>
+</html>

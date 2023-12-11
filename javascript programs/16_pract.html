@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Number</title>
+
+    <style>
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        fieldset {
+            margin: 10px;
+        }
+        input {
+            font-size: 20px;
+            padding: 10px;
+            margin: 8px;
+        }
+        .error {
+            /* padding: 2px; */
+            /* text-align: center; */
+            margin-left: 14px;
+        }
+        button {
+            display: block;
+            margin-left: 14px;
+        }
+        .sbmt {
+            width: 90%;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <form action="backend.php" method="post" onsubmit="return validate()">
+        <p>
+            <fieldset>
+                <legend>Phone Number</legend>
+                <input type="text" id="number" onkeyup="validation(this)" placeholder="Enter Phone number" autocomplete="off">
+                <p id="error1" class="error"></p>
+            </fieldset>
+        
+            <fieldset>
+                <legend>Password</legend>
+                <input type="password" id="pass" onkeyup="confirm_pass(this)" placeholder="Enter Password">
+                <p id="error2" class="error"></p>
+                <button id="btn1" onclick="password(this)">Show Password</button>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Confirm-Password</legend>
+                <input type="password" id="confirmpass" onkeyup="confirm_pass(this)" placeholder="Enter Confirm-Password">
+                <p id="error3" class="error"></p>
+                <button id="btn2" onclick="confirm(this)">Show Password</button>
+            </fieldset>
+            
+            <p id="warn"></p>
+        </p>
+
+        <input type="submit" class="sbmt" value="Submit">
+    </form>
+</body>
+
+<script>
+    function validation(obj)
+    {
+        document.getElementById("error1").style.color = "red";
+        if (isNaN(obj.value))
+        {
+            // document.getElementById("error").innerText = obj.value;
+            document.getElementById("error1").innerHTML = "Please Enter Valid Number";
+        }
+        else 
+        {
+            document.getElementById("error1").innerText = "";
+            
+            if (obj.value.length > 10)
+            {
+                document.getElementById("error1").innerText = "Please Enter 10 Digit Number";
+            }
+            else
+            {
+                document.getElementById("error1").innerText = "";
+            }
+        }
+    }
+    
+    function password(obj)
+    {
+        let obj1 = document.getElementById("pass");
+        let typ = obj1.getAttribute("type");
+        let btn = document.getElementById("btn1");
+        
+        if (typ == "password")
+        {
+            obj1.setAttribute("type", "text");
+            btn.innerText = "Hide Password";  
+        }
+        else 
+        {
+            obj1.setAttribute("type", "password");
+            btn.innerText = "Show Password";
+        }
+        
+    }
+    
+    let obj2 = document.getElementById("confirmpass");
+    function confirm(obj)
+    {
+        let typ = obj2.getAttribute("type");
+        let btn = document.getElementById("btn2");
+        
+        if (typ == "password")
+        {
+            obj2.setAttribute("type", "text");
+            btn.innerText = "Hide Password";  
+        }
+        else 
+        {
+            obj2.setAttribute("type", "password");
+            btn.innerText = "Show Password";
+        }
+        
+    }
+    
+    function confirm_pass(obj)
+    {
+        document.getElementById("error2").style.color = "red";
+        document.getElementById("error3").style.color = "red";
+        let pass1 = document.getElementById("pass");
+        let pass2 = document.getElementById("confirmpass");
+        
+        if (pass2.value.length > 0)
+        {
+            if (pass1.value.length > 0)
+            {
+                document.getElementById("error2").innerText = "";
+                
+                if (pass2.value == pass1.value)
+                {
+                    document.getElementById("error3").innerText = "";
+                }
+                else 
+                {
+                    document.getElementById("error3").innerText = "Confirm Password does not match !";
+                }
+                
+            }
+            else 
+            {
+                if (pass1.value == 0)
+                {
+                    document.getElementById("error2").innerText = "Enter Password"
+                }
+                else
+                {
+                    document.getElementById("error2").innerText = "";
+                }
+                
+            }
+        }
+        else 
+        {
+            if (pass2.value == 0)
+            {
+                // document.getElementById("error3").innerText = "Please Enter Confirm-Password";
+                document.getElementById("error3").innerText = "";
+                document.getElementById("error2").innerText = "";
+            }
+            // else 
+            // {
+                //     document.getElementById("error3").innerText = "";
+                
+                // }
+            }
+        }
+        
+    function validate()
+    {
+        let flag = 1;
+            
+        let number_obj = document.getElementById("number");
+        let pass_obj = document.getElementById("pass");
+        let confirm_obj = document.getElementById("confirmpass");
+        
+        document.getElementById("error1").style.color = "red";
+        document.getElementById("error2").style.color = "red";
+        document.getElementById("error3").style.color = "red";
+        
+        if (number_obj.value.length < 10)
+        {
+            flag = 0;
+            document.getElementById("error1").innerText = "Enter Valid Number...";
+        }
+        else if (pass_obj.value.length == "")
+        {
+            flag = 0;
+            document.getElementById("error2").innerText = "Ener Password...";
+        }
+        else if (confirm_obj.value.length == "")
+        {
+            flag = 0;
+            document.getElementById("error3").innerText = "Enter Valid Password...";
+        }
+        
+        if (flag == 1)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+
+    window.addEventListener("keyup", even =>{
+        let isCap = event.getModifierState("CapsLock");
+    
+        document.getElementById("warn").style.color = "red";
+        if (isCap)
+        {
+            document.getElementById("warn").innerText = "WARNING! CapsLock Is On";
+        }
+        else 
+        {
+            document.getElementById("warn").innerText = "";
+        }
+    })
+</script>
+</html>

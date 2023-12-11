@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions in javascript with HTML</title>
+
+    <style>
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin: auto; */
+        }
+        input {
+            width: 150px;
+            margin: auto 20px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <input type="text" name="NAME" id="name" placeholder="Enter Name">
+        <button class="btn" onclick="greet()">Submit</button>
+    
+    </div>
+</body>
+
+<script>
+    // alert(x)
+    
+    function greet()
+    {
+        let x = document.getElementById("name").value
+        alert("WelCome " + x)
+    }
+
+</script>
+</html>

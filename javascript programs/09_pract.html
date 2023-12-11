@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Element By Id & class</title>
+</head>
+
+<body>
+    <div id="first">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor, voluptatum!
+    </div>
+
+    <br>
+    <div class="second">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam laboriosam dignissimos voluptatem ipsam?
+    </div>
+
+    <br>
+    <div class="second">
+        <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam laboriosam dignissimos voluptatem ipsam?
+    </div>
+</body>
+<script>
+    let x = document.getElementById("first").innerHTML = "<h3>WelCome to javascript-course !</h3><b>It is 9<sup>th</sup> - program javascript porgram !</b>"
+    console.log(x)
+
+    document.getElementsByClassName("second")[0].innerHTML
+
+    let y = document.getElementsByClassName("second")[1].innerHTML = "<b>This is third paragraph</b>"
+    console.log(y)
+</script>
+
+</html>

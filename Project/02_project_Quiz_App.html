@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(130deg, rgb(250, 5, 217), blue);            
+            /* margin: auto; */
+        }
+        
+        .heading {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+            padding: 10px;
+            color: white;
+        }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px auto;
+            background: white;
+            max-width: 500px;
+            max-height: 600px;
+            border-radius: 10px;
+            box-shadow: 0px 6px 20px rgb(0, 0, 0);
+        }
+        
+        .box {
+            width: 90%;
+            height: 90%;
+            padding: 10px;
+            /* border: 2px solid black; */
+        }
+        .box h2 {
+            font-size: 25px;
+            font-weight: 700;
+            margin-top: 10px
+        }
+        
+        .option {
+            width: 100%;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            /* font-size: 20px; */
+        }
+        
+        .option input {
+            margin-right: 10px;
+        }
+
+        .option label, input {
+            cursor: pointer;
+        }
+
+        #submit {
+            width: 100%;
+            padding: 6px;
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            background-color: rgb(64, 61, 248);
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #submit:hover {
+            background-color: rgb(0, 0, 255);
+        }
+
+        .message {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>  
+
+    <div class="heading">
+        <h2>Quiz App</h2>
+    </div>
+
+    <div class="container">
+        <div class="box" id="box">
+            <div class="question">
+                <h2 id="question">1 Dummy Question</h2> 
+            </div>
+            <div class="option">
+                <input type="radio" name="option" value="a" id="option1" class="options" onclick="checkValidate()">
+                <label for="option1">Option-1</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="option" value="b" id="option2" class="options" onclick="checkValidate()">
+                <label for="option2">Option-2</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="option" value="c" id="option3" class="options" onclick="checkValidate()">
+                <label for="option3">Option-3</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="option" value="d" id="option4" class="options" onclick="checkValidate()"> 
+                <label for="option4">Option-4</label>
+            </div>
+
+            <div class="message">
+                <span id="mssg"></span>
+            </div>
+                
+            <input type="submit" value="Submit" id="submit" onclick="quizSubmit()">
+        </div>
+    </div>
+
+
+    <script src="./02_project_Quiz_app.js"></script>
+</body>
+</html>

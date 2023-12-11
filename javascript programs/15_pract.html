@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window PrintData</title>
+
+    <style>
+        body {
+            width: 80%;
+            height: 100vh;
+            text-align: center;
+            margin: auto;
+        }
+        #container {
+            font-size: 20px;
+            /* text-align: center; */
+        }
+        #box-1,#box-2,#box-3,#box-4 {
+            margin-top: 10px;
+        }
+        button {
+            align-items: center;
+            margin-top: 20px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body id="body">
+    <br>
+    <div id="container">
+        <h2>Print Data</h2>
+        <div id="data">
+            <div id="box-1">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi expedita ipsum inventore rem beatae non, earum quisquam  suscipit expedita amet quas?
+            </div>
+            <div id="box-2">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea hic quod eum officiis ratione sed aperiam delectus quam dicta nulla!
+            </div>
+            <div id="box-3">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae necessitatibus error nam, numquam et perferendis est quisquam id fugit sit.
+            </div>
+            <div id="box-4">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus doloremque deleniti eligendi modi molestias, commodi sunt suscipit fugiat mollitia fuga.
+            </div>
+        </div>
+        <button id="btn" onclick="printdata()">Print</button>
+    </div>
+
+</body>
+
+<script>
+    function printdata()
+    {
+        let bodyData = document.getElementById("body").innerHTML;
+    
+        let data = document.getElementById("data").innerHTML;
+    
+        document.getElementById("body").innerHTML = data;
+    
+        window.print();
+    
+        document.getElementById("body").innerHTML = bodyData;
+
+    }
+    </script>
+</html>

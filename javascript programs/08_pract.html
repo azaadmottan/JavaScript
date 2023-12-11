@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(B.O.M & D.O.M)alert, confirm & prompt</title>
+</head>
+<body>
+    <script>
+        alert("Please Enter Valid Information !")
+
+        let name = prompt("Enter Your Name")
+
+        let Number_1 = prompt("Enter Your Phone-number ","1234567890")
+
+        alert("Please Re-Enter Your Phone Number")
+
+        let Number_2 = prompt("Re-Enter Your Phone Number")
+        
+        // let Len = Number.parseInt(Number_2)
+        // let Len1 = Number_1.length()
+        // let Len2 = Number_2.length()
+
+        if (Number_1 == Number_2)
+        {
+            alert("Verified Successfully !")
+
+            let conformation = confirm("Submit your details !")
+
+            
+            if (conformation == true)
+            {
+                let detail = confirm("Do you want check your details")
+                if (detail == true)
+                {
+                    document.write("Your's Name : ",name)
+                    document.write("Your's Phone Number : ",Number_2)
+                }
+                else 
+                {
+                    document.write("Thanks For Using Portal")
+                }
+            }
+        }
+        else 
+        {
+            alert("Please Enter Valid Number !")
+        }
+
+        let color = prompt("Enter Page background color")
+        document.body.style.background = color
+        
+    </script>
+</body>
+</html>
