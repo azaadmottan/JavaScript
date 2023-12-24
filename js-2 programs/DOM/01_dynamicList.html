@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+
+    <h3 style="text-align: center;">Optimized way to create list through JS.</h3>
+
+    <h4 style="text-align: center;">List Items</h4>
+
+    <ul class="dynamic-list"></ul>
+
+    <script>
+
+        let listParent = document.querySelector(".dynamic-list");
+
+        const addlang = (...lang) => {
+
+            if (lang.length !== 0) {
+                
+                lang.forEach(item => {
+                    
+                    let li = document.createElement("li");
+                    
+                    li.appendChild(document.createTextNode(item));
+                    
+                    listParent.appendChild(li);
+                });
+            }
+            else {
+                listParent.innerHTML = "Please enter name of any programming language.";
+            }
+
+            // console.log(document.querySelectorAll("li"));
+        }
+
+        addlang("JavaScript", "Java", "Python", "C++", "C");
+        // addlang();
+    </script>
+</body>
+</html>
