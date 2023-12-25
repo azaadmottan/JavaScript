@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            background-color: #212121;
+            color: #fff;
+            padding: 40px 100px;
+        }
+        h3 {
+            text-align: center;
+            font-size: 25px;
+            letter-spacing: 2px;
+        }
+
+        .user-data {
+            width: 350px;
+            height: 496px;
+            margin: 30px auto;
+            padding: 20px 10px;
+            background-color: #505555;
+            border-radius: 10px;
+            overflow-y: scroll;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .user-data form input {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 17px;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+
+        input[type="text"] {
+            margin: 20px 0px 40px;
+        }
+
+        input[type="submit"] {
+            cursor: pointer;
+            color: #fff;
+            background-color: #3a3af3;
+            transition: 0.3s ease-out;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0000e2;
+        }
+        .error-msg {
+            color: #fdd2d2;
+            font-size: 19px;
+            font-style: italic;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .user-details {
+            margin-top: 40px;
+        }
+
+        .user-details div {
+            margin-bottom: 20px;
+            font-size: 19px;
+            letter-spacing: 1.5px;
+        }
+
+        .user-details div>span {
+            color: #ffffff;
+        }
+
+        #userImg img {
+            width: 120px;
+            margin: auto;
+            display: flex;
+            border-radius: 40px;
+            padding: 2px;
+            border: 1px solid blue;
+        }
+
+        #link a {
+            color: #b378f7;
+            text-decoration: none;
+        }
+        #link a:hover {
+            color: #f53f48;
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="main">
+
+        <h3>API Request</h3>
+
+        <div class="user-data">
+
+            <form action="#">
+
+                <input type="text" id="userName" placeholder="Enter username">
+
+                <div class="error-msg"></div>
+
+                <input type="submit" value="Search">
+            </form>
+
+            <div class="user-details">
+                <div>
+                    <span id="userImg"></span>
+                </div>
+                <div>
+                    <span>Username: </span><span id="name"></span>
+                </div>
+                <div>
+                    <span>Bio Data: </span><span id="bio"></span>
+                </div>
+                <div>
+                    <span>Twitter Username: </span><span id="twitter"></span>
+                </div>
+                <div>
+                    <span>Followers: </span><span id="followers"></span>
+                </div>
+                <div>
+                    <span>Following: </span><span id="following"></span>
+                </div>
+                <div>
+                    <span>Account Created At: </span><span id="create"></span>
+                </div>
+                <div>
+                    <span>GitHub Link: </span><span id="link"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    
+</body>
+
+<script>
+
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        const userName = document.querySelector("#userName").value;
+        // const userName = "hiteshchoudhary";
+
+        // console.log(typeof(userName));
+
+        if (userName === "" || typeof(userName) !== "string") {
+
+            document.querySelector(".error-msg").innerHTML = "Please Enter Valid Username !";
+            setTimeout(() => {
+                
+                document.querySelector(".error-msg").textContent = "";
+            }, 2000);
+
+        }
+        else {
+            
+            document.querySelector("#userName").value = "";
+
+            const requestUrl = `https://api.github.com/users/${userName}`;
+        
+            const xhr = new XMLHttpRequest();
+        
+            xhr.open('GET', requestUrl);
+        
+            xhr.onreadystatechange = function () {
+        
+                if(xhr.readyState === 4) {
+        
+                    const data = JSON.parse(this.responseText);
+                    
+                    document.querySelector("#userImg").innerHTML = `<img src='${data.avatar_url}'>`;
+
+                    document.querySelector("#name").innerHTML = data.login;
+                    document.querySelector("#bio").innerHTML = data.bio;
+                    document.querySelector("#twitter").innerHTML = data.twitter_username;
+                    document.querySelector("#followers").innerHTML = data.followers;
+                    document.querySelector("#following").innerHTML = data.following;
+                    document.querySelector("#create").innerHTML = data.created_at;
+                    document.querySelector("#link").innerHTML = `<a href='https://github.com/${userName}'>GitHub</a>`;
+                    // console.log(data)
+        
+                }
+            }
+            xhr.send();
+        }
+
+    })
+
+
+</script>
+</html>
