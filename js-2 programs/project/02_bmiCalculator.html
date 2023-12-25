@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Mass Index Calculator (BMI)</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            background-color: #212121;
+            color: #fff;
+            padding: 40px 100px;
+            position: relative;
+        }
+
+        .main .main-panel {
+            width: 400px;
+            margin: auto;
+        }
+
+        .main .main-panel>h3 {
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 1.5px;
+        }
+
+        .form-cal {
+            background-color: #3b3636;
+            padding: 50px 20px 10px;
+            border-radius: 10px;
+        }
+
+        .form-cal #error-msg {
+            display: block;
+            font-size: 18px;
+            font-style: italic;
+            letter-spacing: 1px;
+            color: #ff2d2d;
+        }
+        .form-cal input {
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 30px;
+            padding: 6px 5px;
+            border-radius: 5px;
+            border: 1px solid #353131;
+            outline: none;
+        }
+
+        .form-cal input[type="submit"] {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #3939df;
+            color: #fff;
+            font-size: 18px;
+            letter-spacing: 1px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s ease-out;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0404f8;
+        }
+
+        .main-panel .form-result > h3 {
+            margin: 25px 0px;
+            letter-spacing: 1.5px;
+        }
+
+        .form-result p {
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .form-result p span {
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .bmi {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .clock {
+            position: absolute;
+            top: 40px;
+            right: 100px;
+        }        
+
+        .clock-box span {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div class="main">
+
+        <div class="clock">
+            <div class="clock-box">
+                <span id="current-time">
+                    10:10:20 PM
+                </span>
+            </div>
+        </div>
+        <div class="main-panel">
+
+
+            <h3>Body Mass Index Calculator <sup>BMI</sup></h3>
+    
+            <div class="form-cal">
+    
+                <form action="#" method="post">
+    
+                    <input type="text" id="height" placeholder="Enter your height">
+                    <input type="text" id="weight" placeholder="Enter your weight">
+    
+                    <div id="error-msg"></div>
+    
+                    <input type="submit" value="Calculate">
+                </form>
+            </div>
+    
+            
+            <div class="form-result">
+    
+                <h3>BMI Weight Guide <sup>BMI</sup></h3>
+    
+                <p>
+                    Under Weight: <span>Less than 18.6</span> <span class="bmi" id="under-weight"></span>
+                </p>
+                <p>
+                    Normal Range: <span>18.6 - 24.9</span> <span class="bmi" id="normal-range"></span>
+                </p>
+                <p>
+                    Overweight: <span>Greater than 24.9</span> <span class="bmi" id="over-weight"></span>
+                </p>
+    
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            const height = parseInt(document.querySelector("#height").value);
+            const weight = parseInt(document.querySelector("#weight").value);
+
+            if (height === "" || height < 0 || isNaN(height)) {
+
+                document.querySelector("#error-msg").innerHTML = `Please enter valid height ! <span style="text-decoration: line-through;">${document.querySelector("#height").value}</span>`;
+            }
+            else if (weight === "" || weight < 0 || isNaN(weight)) {
+
+                document.querySelector("#error-msg").innerHTML = `Please enter valid weight ! <span style="text-decoration: line-through;">${document.querySelector("#weight").value}</span>`;
+            }
+            else {
+
+                document.querySelector("#error-msg").innerHTML = "";
+                document.querySelector("#height").value = "";
+                document.querySelector("#weight").value = "";
+                let bmiField = document.querySelectorAll(".bmi");
+
+                bmiField.forEach(element => {
+
+                    element.textContent = "";
+                });
+
+
+                const bmi = (weight * ((height * height) / 10000)).toFixed(2);
+
+                if (bmi < 18.6) {
+
+                    document.querySelector("#under-weight").innerText = "Your BMI: " + bmi;
+                    document.querySelector("#under-weight").style.color = "yellow";
+                }
+                else if (bmi >= 18.6 && bmi <= 24.9) {
+                    
+                    document.querySelector("#normal-range").innerText = "Your BMI: " + bmi;
+                    document.querySelector("#normal-range").style.color = "green";
+                }
+                else if (bmi > 24.9) {
+
+                    document.querySelector("#over-weight").innerText = "Your BMI: " + bmi;
+                    document.querySelector("#over-weight").style.color = "red";
+                }
+            }
+        });
+
+        const currentTime = document.querySelector("#current-time");
+
+        setInterval(() => {
+            
+            let currTime = new Date();
+
+            currentTime.innerText = currTime.toLocaleTimeString();
+        }, 1000);
+
+        
+    </script>
+</body>
+</html>
