@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Changer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: 0.3s ease-in-out;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            background-color: #212121;
+            color: #fff;
+            font-size: 20px;
+            padding: 25px 10px;
+            letter-spacing: 1.5px;
+        }
+        .logo {
+            font-size: 35px;
+            font-style: italic;
+            letter-spacing: 4px;
+        }
+
+        nav .nav-items {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .theme-changer {
+            position: relative;
+        }
+
+        .theme-options {
+            display: none;
+            list-style: none;
+            padding: 5px;
+            margin-top: 10px;
+            border-radius: 10px;
+            background-color: #212121;
+            position: absolute;
+            top: 15px;
+        }
+
+        .theme-options li {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .theme-options li:hover {
+            background-color: #353434;
+        }
+
+        nav .theme-changer:hover .theme-options {
+            display: block;
+        }
+
+        #mainBody {
+            width: 100%;
+            height: 85.8vh;
+            text-align: center; 
+            padding-top: 200px;
+        }
+        
+        .light {
+            color: #000000;
+            background-color: #ffff;
+        }
+        
+        .dark {
+            color: #ffff;
+            background-color: #000000;
+
+        }
+        
+        .lightDark {
+            color: #fff; 
+            background-color: #504f4f;
+        }
+    </style>
+
+</head>
+<body>
+    <nav>
+        <div class="logo">Logo</div>
+        <div>
+            <ul class="nav-items">
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Contact Us</li>
+                <li class="theme-changer">
+                    Change Theme
+                    <ul class="theme-options">
+                        <li id="light">Light</li>
+                        <li id="dark">Dark</li>
+                        <li id="lightDark">Light Dark</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div id="mainBody" class="main-body">
+        <h2>Change Theme Using Theme Changer.</h2>
+    </div>
+
+    <script>
+
+        let themes = document.querySelectorAll(".theme-options li");
+
+        let mainBody = document.querySelector(".main-body");
+
+        themes.forEach( (btn) => {
+            
+            btn.addEventListener('click', (e) => {
+
+                let theme = e.target.id;
+                let currentTheme = mainBody.getAttribute("class");
+                
+                if (theme === 'light') {
+
+
+                    mainBody.classList.replace(currentTheme, "light");
+                }
+                else if (theme === 'dark') {
+                    
+                    mainBody.classList.replace(currentTheme, "dark");
+                }
+                else if (theme === 'lightDark') {
+                    
+                    mainBody.classList.replace(currentTheme, "lightDark");
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
